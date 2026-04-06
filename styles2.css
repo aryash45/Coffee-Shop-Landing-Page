@@ -191,3 +191,65 @@ body { padding-top: 70px; }
         margin-top: 30px;
     }
 }
+
+/* Animation helpers */
+.reveal {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 520ms ease, transform 520ms cubic-bezier(.2,.9,.3,1);
+    will-change: opacity, transform;
+}
+.reveal.active {
+    opacity: 1;
+    transform: none;
+}
+
+/* Staggered nav/link reveal tweaks */
+.nav-links li.reveal {
+    transform: translateY(-6px);
+}
+
+/* Button ripple */
+.btn-cta {
+    position: relative;
+    overflow: hidden;
+}
+.btn-cta .ripple {
+    position: absolute;
+    border-radius: 50%;
+    transform: scale(0);
+    background: rgba(255,255,255,0.35);
+    animation: ripple 600ms ease-out;
+    pointer-events: none;
+}
+@keyframes ripple {
+    to { transform: scale(4); opacity: 0; }
+}
+
+/* Subtle elevated hover for CTAs */
+.btn-cta:hover {
+    transform: translateY(-3px);
+    transition: transform 180ms ease;
+}
+
+/* Page transition */
+body.page-enter {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 360ms ease, transform 360ms cubic-bezier(.2,.9,.3,1);
+}
+body.page-enter.active {
+    opacity: 1;
+    transform: none;
+}
+
+/* Page exit (quick fade) */
+body.page-exit {
+    opacity: 1;
+    transform: none;
+}
+body.page-exit.active {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 260ms ease, transform 260ms cubic-bezier(.2,.9,.3,1);
+}
